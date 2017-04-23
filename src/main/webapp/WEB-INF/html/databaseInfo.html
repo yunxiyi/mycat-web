@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>*|MC:SUBJECT|*</title>
+    <link href="../static/css/bootstrap/bootstrap.min.css"/>
+    <link href="../static/css/libs/font-awesome.css"/>
+</head>
+<style>
+    .user {
+        border: 1px solid #3498db;
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    .databaseUser div label {
+        font-size: 16px;
+    }
+
+    .databaseUser div {
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+<div class="container-fluid">
+    <div class="panel panel-primary user" th:each="userConfig, userConfigStart:${userConfigs}">
+        <!--<div class="panel-heading" style="background: #3498db;border-top: 0px solid white;">-->
+        <!--<h3 class="panel-title" style="border-bottom: 0px solid whitesmoke;text-align: center">-->
+        <!--<label>用户1</label>-->
+        <!--</h3>-->
+        <!--</div>-->
+        <div class="panel-body databaseUser">
+            <div class="row">
+                <label style="text-align: right;width:40%;">数据库:</label>
+                <label style="text-align: right;width:5%;"></label>
+                <label style="text-align: left;width: 40%;"><b th:text="${userConfig.schemas}">bbb</b></label>
+            </div>
+            <div class="row">
+                <label style="text-align: right;width:40%;">URL:</label>
+                <label style="text-align: right;width:5%;"></label>
+                <label style="text-align: left;width: 40%;"><b>127.0.0.1:8066</b></label>
+            </div>
+            <div class="row">
+                <label style="text-align: right;width:40%;">用户名:</label>
+                <label style="text-align: right;width:5%;"></label>
+                <label style="text-align: left;width: 40%;"><b th:text="${userConfig.name}"></b></label>
+            </div>
+            <div class="row">
+                <label style="text-align: right;width:40%;">用户密码:</label>
+                <label style="text-align: right;width:5%;"></label>
+                <label style="text-align: left;width: 40%;"><b th:text="${userConfig.password}"></b></label>
+            </div>
+            <div class="row">
+                <label style="text-align: right;width:40%;">读写权限:</label>
+                <label style="text-align: right;width:5%;"></label>
+                <label style="text-align: left;width: 40%;"><b
+                        th:text="${userConfig.readOnly} ? '读' : '读写'"></b></label>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary user" style="height: 215px;">
+        <div class="panel-body" style="text-align: center;margin-top: 50px;">
+            <i class="fa fa-5x fa-plus" style="color: #25acdb;"></i>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../static/js/clickEvent/databaseInfo.js"></script>
+</html>

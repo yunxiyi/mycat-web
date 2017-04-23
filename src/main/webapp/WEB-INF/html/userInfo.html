@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>*|MC:SUBJECT|*</title>
+    <link href="../static/css/bootstrap/bootstrap.min.css"/>
+</head>
+<style>
+    #userInfo table tr {
+        margin-top: 0px;
+        border: 2px solid white;
+        height: 40px;
+        margin-top: -200px;
+    }
+
+    #userInfo table tr td {
+        width: 38%;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+
+    #databaseInfo table tr {
+        margin-top: 0px;
+        border: 2px solid white;
+        height: 40px;
+        margin-top: -200px;
+    }
+
+    #databaseInfo table tr td {
+        width: 38%;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+
+    .user {
+        border: 1px solid #3498db;
+        width: 70%;
+        margin-left: 15%;
+    }
+</style>
+<body>
+<div class="container-fluid">
+    <div class="panel panel-primary user" style="border: 1px solid #3498db">
+        <div class="panel-heading" style="background: #3498db;border-top: 0px solid white;">
+            <h3 class="panel-title" style="border-bottom: 0px solid whitesmoke;text-align: center">用户信息</h3>
+        </div>
+        <div class="panel-body" id="userInfo">
+            <table class="table" style="border: 0 solid white;height: 150px;">
+                <tr>
+                    <td style="text-align: right">用户名:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;width: 40%;"><b th:text="${user.username}"></b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">邮箱:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;"><b th:text="${user.email}"></b></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">注册日期:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;"><b th:text="${user.registerDate}"></b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-primary user" style="border: 1px solid #3498db">
+        <div class="panel-heading" style="background: #3498db;border-top: 0px solid white;">
+            <h3 class="panel-title" style="border-bottom: 0px solid whitesmoke;text-align: center">数据库信息</h3>
+        </div>
+        <div class="panel-body" id="databaseInfo">
+            <table class="table" style="border: 0 solid white;height: 150px;">
+                <tr>
+                    <td style="text-align: right">数据库:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;width: 40%;"><b th:text="${database}"></b></td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">URL:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;"><b>127.0.0.1:8066</b></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">读写权限:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;"><b>读写</b></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">是否启动读写分离:</td>
+                    <td style="width: 5%;"></td>
+                    <td style="text-align: left;"><b>是</b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../static/js/clickEvent/userInfo.js"></script>
+</html>

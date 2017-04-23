@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Centaurus - Bootstrap Admin Template</title>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        try {
+            if (!window.CloudFlare) {
+                var CloudFlare = [{
+                    verbose: 0,
+                    p: 1419364062,
+                    byc: 0,
+                    owlid: "cf",
+                    bag2: 1,
+                    mirage2: 0,
+                    oracle: 0,
+                    paths: {cloudflare: "/cdn-cgi/nexp/dok2v=1613a3a185/"},
+                    atok: "1fca8a26fb9678bbb4b5c54c34e227b9",
+                    petok: "8e0e13d48a7317edb100ef6d31da57a443451848-1420553919-1800",
+                    zone: "adbee.technology",
+                    rocket: "0",
+                    apps: {"ga_key": {"ua": "UA-49262924-2", "ga_bs": "2"}}
+                }];
+                !function (a, b) {
+                    a = document.createElement("script"), b = document.getElementsByTagName("script")[0], a.async = !0, a.src = "//ajax.cloudflare.com/cdn-cgi/nexp/dok2v=919620257c/cloudflare.min.js", b.parentNode.insertBefore(a, b)
+                }()
+            }
+        } catch (e) {
+        }
+        ;
+        //]]>
+    </script>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css"/>
+
+    <script src="../static/js/demo-rtl.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="../static/css/libs/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/libs/nanoscroller.css"/>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/compiled/theme_styles.css"/>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/libs/magnific-popup.css"/>
+
+    <link type="image/x-icon" href="../static/favicon.png" rel="shortcut icon"/>
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet'
+          type='text/css'/>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="theme-wrapper">
+    <header class="navbar" id="header-navbar">
+        <div class="container">
+            <a href="/" id="logo" class="navbar-brand">
+                <img src="../static/img/logo.png" alt="" class="normal-logo logo-white"/>
+                <img src="../static/img/logo-black.png" alt="" class="normal-logo logo-black"/>
+                <img src="../static/img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
+            </a>
+            <div class="clearfix">
+                <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+                    <ul class="nav navbar-nav pull-left">
+                        <li>
+                            <a class="btn" id="make-small-nav">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-no-collapse pull-right" id="header-nav">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="mobile-search">
+                            <a class="btn">
+                                <i class="fa fa-search"></i>
+                            </a>
+                            <div class="drowdown-search">
+                                <form role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search..."/>
+                                        <i class="fa fa-search nav-search-icon"></i>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="dropdown profile-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../static/img/samples/scarlet-159.png" alt=""/>
+                                <span class="hidden-xs" th:text="${user.username}"></span> <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/user-profile"><i class="fa fa-user"></i>Profile</a></li>
+                                <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+                                <li><a href="/logout"><i class="fa fa-power-off"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="hidden-xxs">
+                            <a class="btn" href="/logout">
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="user-profile" style="width: 100%;height: 100%;background: #e7ebee;">
+        <div class="col-lg-3 col-md-4 col-sm-4" style="background: white">
+            <div class="main-box clearfix">
+                <div class="main-box-body clearfix">
+                    <img src="../static/img/samples/scarlet-159.png" alt=""
+                         class="profile-img img-responsive center-block" style="margin-top: 20px;"/>
+                    <div class="profile-label" style="text-align: center;">
+                        <header class="main-box-header clearfix" style="text-align: center">
+                            <span style="font-size: 20px;margin-right: 20px;" th:text="${user.username}"></span>
+                            <i class="fa fa-circle"
+                               style="font-size:0.75em;margin-top:-10px;padding-bottom:10px;color:#2ecc71;">Online</i>
+                        </header>
+                        <span class="label label-danger" sec:authorize-expr="hasRole('ROLE_ADMIN')">管理员</span>
+                        <span class="label label-danger" sec:authorize-expr="hasRole('ROLE_USER')">普通用户</span>
+                    </div>
+                    <div class="profile-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <span sec:authorize-expr="hasRole('ROLE_ADMIN')">Super User</span>
+                    </div>
+                    <div class="profile-since">
+                        注册时间: <span th:text="${user.registerDate}"></span>
+                    </div>
+                    <div class="profile-details">
+                        <ul class="fa-ul">
+                            <li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li>
+                            <li><i class="fa-li fa fa-comment"></i>Posts: <span>828</span></li>
+                            <li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span></li>
+                        </ul>
+                    </div>
+                    <div class="profile-message-btn center-block text-center">
+                        <a href="#" class="btn btn-success">
+                            <i class="fa fa-envelope"></i>
+                            Send message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-sm-8" style="background: white">
+            <div class="main-box clearfix" style="border-left: solid #CCCCCC 1px;">
+                <div class="tabs-wrapper profile-tabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#userInfo" data-toggle="tab">用户信息</a>
+                        </li>
+                        <li><a href="#databaseInfo" data-toggle="tab">数据库用户</a></li>
+                        <li><a href="#interface" data-toggle="tab">接口</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade" id="tab-newsfeed">
+                            <div id="newsfeed">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade in active" id="tab-activity">
+                            <div class="table-responsive" id="info">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/demo-skin-changer.js"></script>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/clickEvent/control.js"></script>
+<script src="../static/js/clickEvent/user-profile.js"></script>
+
+<script type="text/javascript">
+    // When the window has finished loading create our google map below
+    google.maps.event.addDomListener(window, 'load', init);
+
+    function init() {
+        var latlng = new google.maps.LatLng(40.763986, -73.958674);
+
+        //APPLE MAP
+        var mapOptionsApple = {
+            zoom: 12,
+            scrollwheel: false,
+            center: latlng,
+
+            // How you would like to style the map.
+            // This is where you would paste any style found on Snazzy Maps.
+            styles: [{
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{"color": "#a2daf2"}]
+            }, {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f7f1df"}]
+            }, {
+                "featureType": "landscape.natural",
+                "elementType": "geometry",
+                "stylers": [{"color": "#d0e3b4"}]
+            }, {
+                "featureType": "landscape.natural.terrain",
+                "elementType": "geometry",
+                "stylers": [{"visibility": "off"}]
+            }, {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [{"color": "#bde6ab"}]
+            }, {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [{"visibility": "off"}]
+            }, {
+                "featureType": "poi.medical",
+                "elementType": "geometry",
+                "stylers": [{"color": "#fbd3da"}]
+            }, {"featureType": "poi.business", "stylers": [{"visibility": "off"}]}, {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [{"visibility": "off"}]
+            }, {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [{"visibility": "off"}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#ffe15f"}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#efd151"}]
+            }, {
+                "featureType": "road.arterial",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#ffffff"}]
+            }, {
+                "featureType": "road.local",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "black"}]
+            }, {
+                "featureType": "transit.station.airport",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#cfb2db"}]
+            }]
+        };
+
+        var mapElementApple = document.getElementById('map-apple');
+
+        // Create the Google Map using out element and options defined above
+        var mapApple = new google.maps.Map(mapElementApple, mapOptionsApple);
+
+        var markerApple = new google.maps.Marker({
+            position: latlng,
+            map: mapApple
+        });
+    }
+
+    $(document).ready(function () {
+        $('.conversation-inner').slimScroll({
+            height: '340px'
+        });
+    });
+
+    $(function () {
+        $(document).ready(function () {
+            $('#newsfeed .story-images').magnificPopup({
+                type: 'image',
+                delegate: 'a',
+                gallery: {
+                    enabled: true
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>
